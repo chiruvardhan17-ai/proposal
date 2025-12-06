@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proposal</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at top, #ff7aa8, #ff5c8d, #ff3d78);
+      color: #5A0033;
+      font-family: "Poppins", sans-serif;
+      overflow: hidden;
+    }
+
+    .center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.7);
+      opacity: 0;
+      text-align: center;
+      width: 90%;
+      transition:
+        opacity 1.2s ease,
+        transform 1.2s ease;
+    }
+
+    h1, p {
+      margin: 10px 0;
+      color: #5A0033;
+      text-shadow: 0 0 14px rgba(255, 220, 235, 0.85);
+      font-weight: 600;
+      font-size: 1.3rem;
+    }
+
+    .fade-in {
+      opacity: 1 !important;
+      transform: translate(-50%, -50%) scale(1.05) !important;
+    }
+
+    .fade-out {
+      opacity: 0 !important;
+      transform: translate(-50%, -50%) scale(0.85) !important;
+    }
+
+    #btns button {
+      padding: 14px 28px;
+      margin: 10px;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      border-radius: 12px;
+      background: #FFE5F0;
+      color: #C1004F;
+      box-shadow: 0 0 14px rgba(255, 255, 255, 0.7);
+      transition: transform 0.25s ease;
+      font-weight: 600;
+    }
+
+    #btns button:hover {
+      transform: scale(1.15);
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -10px;
+      color: #ffdbec;
+      font-size: 22px;
+      animation: floatUp 6s linear;
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0%   { transform: translateY(0) scale(0.5); opacity: 0.8; }
+      50%  { opacity: 1; }
+      100% { transform: translateY(-120vh) scale(1.7); opacity: 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="scene1" class="center">
+    <h1>Heyyy princess... 💗</h1>
+  </div>
+
+  <div id="scene2" class="center">
+    <p>I know you had an exhausting day today... </p>
+  </div>
+
+  <div id="scene3" class="center">
+    <p>But listen...</p>
+    <p>you are the MOST pretty and beautiful girl I've ever seen 💐</p>
+  </div>
+
+  <div id="scene4" class="center">
+    <p>I loveeeeeee youuuu sooo muchhhh 💖💗💞💓</p>
+  </div>
+
+  <div id="scene5" class="center">
+    <p>And yes...</p>
+    <p>we can go on ice cream dates 🍦💕</p>
+    <p>and I'll pay for it always 💘</p>
+  </div>
+
+  <div id="scene6" class="center">
+    <h1>I have something to ask you... 💭💗</h1>
+  </div>
+
+  <div id="scene7" class="center">
+    <h1>Will you be my wife FOREVER...?</h1>
+    <p>And set our worlds together? 🌍💞💍</p>
+
+    <div id="btns">
+      <button id="yes">Yes ❤️</button>
+      <button id="no">No 😭</button>
+    </div>
+  </div>
+
+  <div id="scene8" class="center">
+    <h1>YAYYYY!!! 🎉❤️</h1>
+    <p>You just made my whole universe brighter ✨💗</p>
+  </div>
+
+<script>
+
+  let scenes = ["scene1","scene2","scene3","scene4","scene5","scene6","scene7"];
+  let delay = 2600;
+
+  scenes.forEach((id, i) => {
+    setTimeout(() => {
+      let el = document.getElementById(id);
+      el.classList.add("fade-in");
+
+      // fade out earlier scenes
+      if (i < scenes.length - 1) {
+        setTimeout(() => {
+          el.classList.add("fade-out");
+        }, 2000);
+      }
+    }, delay * i);
+  });
+
+  document.getElementById("yes").onclick = () => {
+    document.body.innerHTML = document.getElementById("scene8").outerHTML;
+    setTimeout(() => {
+      document.getElementById("scene8").classList.add("fade-in");
+    }, 200);
+  };
+
+  document.getElementById("no").onclick = () => {
+    alert("Try again 😌💗");
+  };
+
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = ["❤️","💕","💗","💞","💓"][Math.floor(Math.random()*5)];
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (5 + Math.random() * 3) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+  }
+
+  setInterval(createHeart, 450);
+
+</script>
+</body>
+</html>
